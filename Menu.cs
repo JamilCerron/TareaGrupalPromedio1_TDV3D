@@ -10,7 +10,7 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
     {
         public List<Estructura> estructuras=new List<Estructura>();
         public List<Enemigo> enemigos = new List<Enemigo>();
-        public int dinero;
+        public int dinero=100;
         public int turnosConAlMenosUnEnemigoEnLaLista;
         public int turnosSobrevividos=1;
         bool continuarMenu=true;
@@ -34,7 +34,7 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
                 {
                     switch (opcion)
                     {
-                        case 1: VerEstructuras(); break;
+                        case 1:  VerEstructuras(); break;
                         case 2: CrearEstructuras(); break;
                         case 3: VerEnemigos(); break;
                             //case 4:  PasarTurno();                            
@@ -44,6 +44,7 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
                 else MensajeDeOpcionInvalida();
             }
         }
+
         public void CrearEstructuras()
         {
             Console.WriteLine("\n--- Crear Estructura ---");
@@ -82,14 +83,11 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
         public void VerEstructuras()
         {
             Console.WriteLine("--- Estructuras ---");
-            foreach(var estructura in estructuras)
+            foreach (var estructura in estructuras)
             {
                 Console.WriteLine($"{estructura.nombre} - Vida {estructura.vida}");
             }
         }
-
-
-
         public int MetodoFibonacci(int turnosConALMenosUnEnemigoEnLaLista)
         {
             int a1 = 0, a2 = 1, a3 = 0;
