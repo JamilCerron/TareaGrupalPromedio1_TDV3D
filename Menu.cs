@@ -14,6 +14,8 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
         public int turnosConAlMenosUnEnemigoEnLaLista;
         public int turnosSobrevividos=1;
         bool continuarMenu=true;
+
+
         public  void EjecutarMenu()
         {
             while (continuarMenu)
@@ -35,11 +37,8 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
                         case 1: VerEstructuras(); break;
                         case 2: CrearEstructuras(); break;
                         case 3: VerEnemigos(); break;
-                            //case 4:  PasarTurno(); 
-
-                            
-                    }
-                    
+                            //case 4:  PasarTurno();                            
+                    }                   
                 }
 
                 else MensajeDeOpcionInvalida();
@@ -126,13 +125,11 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
                 for (int i = 0; i < MetodoFibonacci(turnosConAlMenosUnEnemigoEnLaLista); i++)
                 {
                     Enemigo nuevoEnemigo = new Enemigo("DemoledorDeEstructuras", 100, 50);
-                    enemigos.Add(nuevoEnemigo);
                     Console.Write($"{i + 1}.{nuevoEnemigo.nombre} "); Console.WriteLine($"Vida= {nuevoEnemigo.vida}");
                 }
             }
 
         }
-
         public void VerificadorDeLista()
         {
             if (enemigos.Count == 0 && turnosSobrevividos != 0)
