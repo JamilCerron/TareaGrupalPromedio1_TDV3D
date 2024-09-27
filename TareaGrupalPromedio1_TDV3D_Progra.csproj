@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enemigo.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="Estructura.cs" />
     <Compile Include="EstructuraRecoleccion.cs" />
     <Compile Include="Program.cs" />
