@@ -72,6 +72,7 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
             if(turnosConAlMenosUnEnemigoEnLaLista== 0)
             { 
                     Console.WriteLine("No hay enemigos actualmente");
+
             }
 
             else
@@ -87,7 +88,7 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
 
         public void VerificadorDeLista()
         {
-            if(enemigos.Count == 0)
+            if(enemigos.Count == 0 && turnosSobrevividos!=0)
             {
                 turnosConAlMenosUnEnemigoEnLaLista = 0;
             }
@@ -107,7 +108,7 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
         
         public void TurnoDelEnemigo()
         {
-            VerificadorDeLista();
+            //VerificadorDeLista();
             CrearEnemigos();
             turnosConAlMenosUnEnemigoEnLaLista++;
             
