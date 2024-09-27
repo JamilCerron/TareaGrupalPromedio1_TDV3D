@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,20 +30,60 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
 
                 if (int.TryParse(entradaOpcion, out int opcion) && (opcion <= 4 && opcion >= 1))
                 {
-                    switch (opcion)
-                    {
-                        case 1: // VerEstructuras();
-                        case 2: // CrearEstructuras();
-                        case 3: VerEnemigos(); break;
-                            //case 4:  PasarTurno(); 
-                    }
-                    TurnoDelEnemigo();
+                    case 1: VerEstructuras(); break;
+                    case 2:  CrearEstructuras(); break;
+                    case 3:   VerEnemigos(); break;
+                    //case 4:  PasarTurno(); 
                 }
 
                 else MensajeDeOpcionInvalida();
             }
         }
-            
+        public void CrearEstructuras()
+        {
+            Console.WriteLine("\n--- Crear Estructura ---");
+            Console.WriteLine("1. Estructura de Recolección (Costo: 50, Vida: 10)");
+            Console.WriteLine("2. Estructura de Mantenimiento (Costo: 60, Vida: 15)");
+            Console.WriteLine("3. Estructura de Defensa (Costo: 80, Vida: 20, Daño: 5)");
+            Console.Write("Selecciona una opción: ");
+            int opcion = int.Parse(Console.ReadLine());
+
+            if (opcion == 1 && dinero >= 20)
+            {
+                estructuras.Add(new EstructuraRecoleccion("Recolección", 20, 10, 10));
+                dinero -= 20;
+                Console.WriteLine("Estructura de recolección creada.");
+            }
+            //else if (opcion == 2 && dinero >= 30)
+            //{
+            //    estructuras.Add(new EstructuraMantenimiento("Mantenimiento", 30, 15, 5));
+            //    dinero -= 30;
+            //    Console.WriteLine("Estructura de mantenimiento creada.");
+            //}
+            //else if (opcion == 3 && dinero >= 50)
+            //{
+            //    estructuras.Add(new EstructuraDefensa("Defensa", 50, 20, 5));
+            //    dinero -= 50;
+            //    Console.WriteLine("Estructura de defensa creada.");
+            //}
+            else
+            {
+                Console.WriteLine("No tienes suficiente dinero.");
+            }
+
+        }
+
+        //Ver las estructuras actuales
+        public void VerEstructuras()
+        {
+            Console.WriteLine("--- Estructuras ---");
+            foreach(var estructura in estructuras)
+            {
+                Console.WriteLine($"{estructura.nombre} - Vida {estructura.vida}");
+            }
+        }
+
+
 
         public int MetodoFibonacci(int turnosConALMenosUnEnemigoEnLaLista)
         {
