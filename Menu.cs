@@ -39,6 +39,8 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
                     }
                     TurnoDelEnemigo();
                 }
+
+                else MensajeDeOpcionInvalida();
             }
         }
             
@@ -80,9 +82,7 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
                     Console.Write($"{i + 1}.{nuevoEnemigo.nombre} "); Console.WriteLine($"Vida= {nuevoEnemigo.vida}");
                 }
             }
-
-            
-            
+        
         }
 
         public void VerificadorDeLista()
@@ -91,6 +91,8 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
             {
                 turnosConAlMenosUnEnemigoEnLaLista = 0;
             }
+
+           
         }
         public void VerEnemigos()
         {
@@ -100,22 +102,29 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
                 Console.Write($"{indice}. {enemigo.nombre}");
                 indice++;
             }
-        }
 
+        }
+        
         public void TurnoDelEnemigo()
         {
+            VerificadorDeLista();
             CrearEnemigos();
             turnosConAlMenosUnEnemigoEnLaLista++;
             
             foreach(Enemigo enemigo in enemigos)
             {
                 AtacarEstructura(enemigo);
-            }
-
-           
+            }          
             
         }
+        public void AtacarEnemigos()
+        {
+           foreach (Enemigo enemigos in enemigos)
+           {
 
+           }
+
+        }
         private void AtacarEstructura(Enemigo enemigo)
         {
             //Estructura objetivo = null;
@@ -141,6 +150,11 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
             //{
             //    Console.WriteLine("No hay estructuras para atacar.");
             //}
+        }
+
+        void MensajeDeOpcionInvalida()
+        {
+            Console.WriteLine("Opcion invalida, vuelva a marcar");
         }
     }
 }
