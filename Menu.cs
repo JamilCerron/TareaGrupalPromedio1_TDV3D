@@ -28,12 +28,15 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
 
                 string entradaOpcion = Console.ReadLine();
 
-                if (int.TryParse(entradaOpcion, out int opcion) && (opcion <= 4 && opcion >= 1))
+                if (int.TryParse(entradaOpcion, out int opcion) && (opcion <= 4 && opcion >= 1)) 
                 {
-                    case 1: VerEstructuras(); break;
-                    case 2:  CrearEstructuras(); break;
-                    case 3:   VerEnemigos(); break;
-                    //case 4:  PasarTurno(); 
+                    switch (opcion)
+                    {
+                        case 1: VerEstructuras(); break;
+                        case 2: CrearEstructuras(); break;
+                        case 3: VerEnemigos(); break;
+                            //case 4:  PasarTurno(); 
+                    }
                 }
 
                 else MensajeDeOpcionInvalida();
