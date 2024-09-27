@@ -26,24 +26,6 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
             return vida <= 0;
         }
 
-        //para clase Juego ;no esta creada . lo guardo aqui por mientras; -- enemigos apariciones 
-        private int Fibonacci(int n)
-        {
-            int a = 0;
-            int b = 1;
-            int c = 0;
-
-            if (n == 0) { return a; }
-            if (n == 1) { return b; }
-
-            for (int k = 2; k <= n; k++)
-            {
-                c = a + b;
-                a = b;
-                b = c;
-            }
-            return b;
-        }
-
+        
     }
 }
