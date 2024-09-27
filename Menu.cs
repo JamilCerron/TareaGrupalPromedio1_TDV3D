@@ -36,7 +36,10 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
                         case 2: CrearEstructuras(); break;
                         case 3: VerEnemigos(); break;
                             //case 4:  PasarTurno(); 
+
+                            
                     }
+                    
                 }
 
                 else MensajeDeOpcionInvalida();
@@ -90,7 +93,7 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
 
         public int MetodoFibonacci(int turnosConALMenosUnEnemigoEnLaLista)
         {
-            int a1 = 0, a2 = 1, a3=0;
+            int a1 = 0, a2 = 1, a3 = 0;
 
             if (turnosConAlMenosUnEnemigoEnLaLista == 0) { return 0; }
 
@@ -98,23 +101,23 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
 
             else
             {
-                for (int i = 0; i < turnosConALMenosUnEnemigoEnLaLista-1; i++)
+                for (int i = 0; i < turnosConALMenosUnEnemigoEnLaLista - 1; i++)
                 {
                     a3 = a1 + a2;
                     a1 = a2;
                     a2 = a3;
                 }
                 return a3;
-            }       
+            }
         }
 
         public void CrearEnemigos()
         {
             Console.WriteLine("La lista de enemigos es la siguiente:");
 
-            if(turnosConAlMenosUnEnemigoEnLaLista== 0)
-            { 
-                    Console.WriteLine("No hay enemigos actualmente");
+            if (turnosConAlMenosUnEnemigoEnLaLista == 0)
+            {
+                Console.WriteLine("No hay enemigos actualmente");
 
             }
 
@@ -123,57 +126,58 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
                 for (int i = 0; i < MetodoFibonacci(turnosConAlMenosUnEnemigoEnLaLista); i++)
                 {
                     Enemigo nuevoEnemigo = new Enemigo("DemoledorDeEstructuras", 100, 50);
+                    enemigos.Add(nuevoEnemigo);
                     Console.Write($"{i + 1}.{nuevoEnemigo.nombre} "); Console.WriteLine($"Vida= {nuevoEnemigo.vida}");
                 }
             }
-        
+
         }
 
         public void VerificadorDeLista()
         {
-            if(enemigos.Count == 0 && turnosSobrevividos!=0)
+            if (enemigos.Count == 0 && turnosSobrevividos != 0)
             {
                 turnosConAlMenosUnEnemigoEnLaLista = 0;
             }
 
-           
+
         }
         public void VerEnemigos()
         {
             int indice = 0;
-            foreach ( Enemigo enemigo in enemigos)
+            foreach (Enemigo enemigo in enemigos)
             {
                 Console.Write($"{indice}. {enemigo.nombre}");
                 indice++;
             }
 
         }
-        
+
         public void TurnoDelEnemigo()
         {
             //VerificadorDeLista();
             CrearEnemigos();
             turnosConAlMenosUnEnemigoEnLaLista++;
-            
-            foreach(Enemigo enemigo in enemigos)
+
+            foreach (Enemigo enemigo in enemigos)
             {
                 AtacarEstructura(enemigo);
-            }          
-            
+            }
+
         }
         public void AtacarEnemigos()
         {
-           foreach (Enemigo enemigos in enemigos)
-           {
+            foreach (Enemigo enemigos in enemigos)
+            {
 
-           }
+            }
 
         }
         private void AtacarEstructura(Enemigo enemigo)
         {
             //Estructura objetivo = null;
 
-           
+
             //objetivo = estructuras.OfType<EstructuraDefensa>().FirstOrDefault();
 
             //if (objetivo == null) 
@@ -185,7 +189,7 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
             //    objetivo = estructuras.OfType<EstructuraRecoleccion>().FirstOrDefault();
             //}
 
-           
+
             //if (objetivo != null)
             //{
             //    objetivo.RecibirAtaque(enemigo.daño); 
@@ -203,3 +207,5 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
     }
 }
 
+
+   
