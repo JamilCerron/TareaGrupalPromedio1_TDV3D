@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,32 +8,35 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
 {
     internal class Menu
     {
-        public List<Estructura> estructuras = new List<Estructura>();
+        public List<Estructura> estructuras=new List<Estructura>();
         public List<Enemigo> enemigos = new List<Enemigo>();
-        public int dinero = 100;
-        public int fibonacciIndex;
-        public int turnosSobrevividos;
+        public int dinero;
         public int turnosConAlMenosUnEnemigoEnLaLista;
+        public int turnosSobrevividos=1;
+        bool continuarMenu=true;
         public  void EjecutarMenu()
         {
-            Console.WriteLine($"Turno {turnosSobrevividos}");
-            Console.WriteLine("Seleccione una de las siguientes opciones");
-            Console.WriteLine("1.Ver estructuras disponibles");
-            Console.WriteLine("2.Crear nuevas estructuras");
-            Console.WriteLine("3.Ver la lista de enemigos");
-            Console.WriteLine("4.Pasar turno");
-
-            string entradaOpcion= Console.ReadLine();
-
-            if (int.TryParse(entradaOpcion, out int opcion) && (opcion<=4 && opcion>=1))
+            while (continuarMenu)
             {
-                switch(opcion)
+                
+                Console.WriteLine($"Turno {turnosSobrevividos}");
+                Console.WriteLine("Seleccione una de las siguientes opciones");
+                Console.WriteLine("1.Ver estructuras disponibles");
+                Console.WriteLine("2.Crear nuevas estructuras");
+                Console.WriteLine("3.Ver la lista de enemigos");
+                Console.WriteLine("4.Pasar turno");
+
+                string entradaOpcion = Console.ReadLine();
+
+                if (int.TryParse(entradaOpcion, out int opcion) && (opcion <= 4 && opcion >= 1))
                 {
                     case 1: VerEstructuras(); break;
                     case 2:  CrearEstructuras(); break;
                     case 3:   VerEnemigos(); break;
                     //case 4:  PasarTurno(); 
                 }
+
+                else MensajeDeOpcionInvalida();
             }
         }
         public void CrearEstructuras()
@@ -86,18 +89,40 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
         {
             int a1 = 0, a2 = 1, a3=0;
 
-            for (int i = 0; i < turnosConALMenosUnEnemigoEnLaLista; i++)
+            if (turnosConAlMenosUnEnemigoEnLaLista == 0) { return 0; }
+
+            else if (turnosConAlMenosUnEnemigoEnLaLista == 1) { return 1; }
+
+            else
             {
-                a3 = a1 + a2;
-                a1 = a2;
-                a2 = a3;
-            }
-            return a3;
+                for (int i = 0; i < turnosConALMenosUnEnemigoEnLaLista-1; i++)
+                {
+                    a3 = a1 + a2;
+                    a1 = a2;
+                    a2 = a3;
+                }
+                return a3;
+            }       
         }
 
         public void CrearEnemigos()
         {
+            Console.WriteLine("La lista de enemigos es la siguiente:");
 
+            if(turnosConAlMenosUnEnemigoEnLaLista== 0)
+            { 
+                    Console.WriteLine("No hay enemigos actualmente");
+            }
+
+            else
+            {
+                for (int i = 0; i < MetodoFibonacci(turnosConAlMenosUnEnemigoEnLaLista); i++)
+                {
+                    Enemigo nuevoEnemigo = new Enemigo("DemoledorDeEstructuras", 100, 50);
+                    Console.Write($"{i + 1}.{nuevoEnemigo.nombre} "); Console.WriteLine($"Vida= {nuevoEnemigo.vida}");
+                }
+            }
+        
         }
 
         public void VerificadorDeLista()
@@ -106,20 +131,71 @@ namespace TareaGrupalPromedio1_TDV3D_Progra
             {
                 turnosConAlMenosUnEnemigoEnLaLista = 0;
             }
+
+           
         }
         public void VerEnemigos()
         {
             int indice = 0;
             foreach ( Enemigo enemigo in enemigos)
             {
-                Console.WriteLine($"{indice}. {enemigo.nombre}");
+                Console.Write($"{indice}. {enemigo.nombre}");
                 indice++;
             }
-        }
 
+        }
+        
         public void TurnoDelEnemigo()
         {
+            VerificadorDeLista();
+            CrearEnemigos();
+            turnosConAlMenosUnEnemigoEnLaLista++;
+            
+            foreach(Enemigo enemigo in enemigos)
+            {
+                AtacarEstructura(enemigo);
+            }          
+            
+        }
+        public void AtacarEnemigos()
+        {
+           foreach (Enemigo enemigos in enemigos)
+           {
 
+           }
+
+        }
+        private void AtacarEstructura(Enemigo enemigo)
+        {
+            //Estructura objetivo = null;
+
+           
+            //objetivo = estructuras.OfType<EstructuraDefensa>().FirstOrDefault();
+
+            //if (objetivo == null) 
+            //{
+            //    objetivo = estructuras.OfType<EstructuraMantenimiento>().FirstOrDefault();
+            //}
+            //if (objetivo == null) 
+            //{
+            //    objetivo = estructuras.OfType<EstructuraRecoleccion>().FirstOrDefault();
+            //}
+
+           
+            //if (objetivo != null)
+            //{
+            //    objetivo.RecibirAtaque(enemigo.daño); 
+            //}
+            //else
+            //{
+            //    Console.WriteLine("No hay estructuras para atacar.");
+            //}
+        }
+
+        void MensajeDeOpcionInvalida()
+        {
+            Console.WriteLine("Opcion invalida, vuelva a marcar");
         }
     }
 }
+
